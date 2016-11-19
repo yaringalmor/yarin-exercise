@@ -1,10 +1,11 @@
+//Variable initialization
 var http = require('http');
 var config = require('./config.json');
 var fs = require('fs');
-
 var HttpDispatcher = require('httpdispatcher');
 var dispatcher = new HttpDispatcher();
 
+//Serving static files from 'resources' directory
 dispatcher.setStatic('/resources');
 dispatcher.setStaticDirname('resources');
 
