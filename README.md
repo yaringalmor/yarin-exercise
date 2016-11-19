@@ -19,11 +19,19 @@ CountingPanda object contain one property (counter) and one method (countGetRequ
 
 ## Ansible Playbook
 ####base.yml
+'base.yml' is an Ansible playbook that deploys the above services. 
+The playbook contain 3 roles which will be deploy among all hosts, and can be applyed by any user (become parameter defined as yes). 
 
 ####nodejs role
+Nodejs role is responsible for installing nodejs and npm which are required for running static-panda.js properly.
 
 ####static-panda role
-
+Static-panda role made up of 2 main directories - files and tasks. 
+'Files' directory contain package.json, config.json,static-panda.js and recources directory.
+package.json has the metadata of this role.(HttpDispartcher is mentioned as a dependency)  
+config.json mention the port for serving the site.
+Resources directory contain 2 images of panda - small.png & medium.png .
+The main.yml file (in tasks directory) instruct ansible to first copy the files from 'files' directory (to the path /tmp/panda-site on the host) and afterwards define /tmp/panda-site directory as a path for installing npm packages (needed for installing HttpDispatcher package).  
 ####counting-panda role
 You'll need a linux machine with the ability to run vms.
 
