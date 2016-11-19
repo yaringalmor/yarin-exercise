@@ -1,7 +1,7 @@
 # Yarin Galmor - DevOps Exercise
 #### INTRO
 In this exercise i had the chance to learn Ansible,Vagrant and NodeJS.
-In this version, i made two service - [static-panda.js](#static-panda.js) and [counting-panda.js](#counting-panda.js)
+In this version, i made two service - [static-panda.js](#static-panda.js) and [counting-panda.js](#counting-panda.js).
 Besides of those services, there is an Ansible playbook named [base.yml](#base.yml), which contain 3 roles - [nodejs role](#nodejs role), [static-panda role](#static-panda role) and [counting-panda role](#counting-panda role).
 
 ## Services
