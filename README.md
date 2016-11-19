@@ -1,13 +1,13 @@
 # Yarin Galmor - DevOps Exercise
 #### INTRO
 In this exercise i had the chance to learn Ansible,Vagrant and NodeJS.  
-In this version, i made two service - [static-panda.js](#static-panda.js) and [counting-panda.js](#counting-panda.js).  
-Besides of those services, there is an Ansible playbook named [base.yml](#base.yml), which contain 3 roles - [nodejs role](#nodejs role), [static-panda role](#static-panda role) and [counting-panda role](#counting-panda role).
+In this version, i made two service - static-panda.js and counting-panda.js.  
+Besides of those services, there is an Ansible playbook named base.yml, which contain 3 roles - nodejs, static-panda and counting-panda role.
 
 ## Services
 ####static-panda.js
 static-panda.js uses HttpDispatcher module for displaying static files.  
-The files are obtained in 'resources' directory at the root folder. (deployed by [statis-panda role](#static-panda role))  
+The files are obtained in 'resources' directory at the root folder. (deployed by statis-panda role)  
 For an example, there are 2 images of panda (small.png,medium.png), and they're could be access with the URL: server:8080/resources/'image name'.  
 If the file is not specified in 'resources' directory, the response will be '404'.  
 
