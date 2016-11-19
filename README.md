@@ -26,8 +26,8 @@ The playbook contain 3 roles which will be deploy among all hosts, and can be ap
 Nodejs role is responsible for installing nodejs and npm which are required for running static-panda.js properly.
 
 ####static-panda role
-Static-panda role made up of 2 main directories - files and tasks. 
-'Files' directory contain package.json, config.json,static-panda.js and recources directory.
+Static-panda role made up of 2 main directories - files and tasks.  
+'Files' directory contain package.json, config.json,static-panda.js and recources directory.  
 package.json has the metadata of this role.(HttpDispartcher is mentioned as a dependency)  
 config.json mention the port for serving the site.
 Resources directory contain 2 images of panda - small.png & medium.png .
