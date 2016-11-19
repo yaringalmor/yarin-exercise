@@ -1,0 +1,6 @@
+---
+- name: copy panda site files
+  copy: src=panda-site dest=/tmp/ owner=root group=root mode=0755
+
+- name: npm install
+  npm: path=/tmp/panda-site
