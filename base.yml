@@ -6,6 +6,7 @@
     - name: Set hostname
       hostname: name={{inventory_hostname}}
 
+#Playbook for deploying static panda site service and counting panda service
 - name: Panda service
   hosts: base
   become: yes
