@@ -1,14 +1,6 @@
 ---
-- name: Common tasks FTW
-  hosts: all
-  become: yes
-  pre_tasks:
-    - name: Set hostname
-      hostname: name={{inventory_hostname}}
-
-#Playbook for deploying static panda site service and counting panda service
 - name: Panda service
-  hosts: base
+  hosts: all
   become: yes
   roles:
     - { role: nodejs, tags: nodejs }
