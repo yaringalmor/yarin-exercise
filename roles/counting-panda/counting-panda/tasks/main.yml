@@ -1,3 +1,0 @@
----
-- name: copy GET request counter
-  copy: src=GET-Counter/ dest=/tmp/panda-site/ owner=root group=root mode=0755
