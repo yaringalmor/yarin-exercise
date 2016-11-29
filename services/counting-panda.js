@@ -1,14 +1,35 @@
-//constructor
-function CountingPanda(){
-    this.counter = 0; //GET request counter
-}
+//Variable initialization
+var http = require('http');
+var config = require('./config.json');
+var fs = require('fs');
+var HttpDispatcher = require('httpdispatcher');
+var dispatcher = new HttpDispatcher();
+var counter = 0;
+var title = "Number of GET requests for this site: ";
 
-//Counts get requests, and return the counter
-CountingPanda.prototype.countGetRequests = function(request){
-    if (request.method === 'GET'){
-        this.counter++;
-        return this.counter;
+function handleRequest(request, response){
+    try {
+        console.log("Requested URL: " + request.url);
+        dispatcher.dispatch(request, response);
+    } catch(err) {
+        console.log(err);
     }
 }
 
-module.exports = CountingPanda;
+dispatcher.onGet("/", function(request, response) {
+    if (request.method === 'GET'){
+        counter++;
+        console.log(counter);
+        response.writeHead(200, {'Content-Type': 'text/plain'});
+        response.end(title + counter.toString());
+    }
+});
+
+dispatcher.onError(function(req, res) {
+        res.writeHead(404);
+        res.end("404 - Page Does not exists");
+});
+
+http.createServer(handleRequest).listen(config.port, function(){
+    console.log("Server listening on: http://localhost:%s", config.port);
+});
