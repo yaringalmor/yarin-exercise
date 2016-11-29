@@ -39,6 +39,11 @@ First, it copies the configuration files to the working directory - /opt/bigpand
 Then, it set npm install path to the working directory for the ability of importing HttpDispatcher module.  
 At the end, it copies the services files to /etc/init and /etc/init.d and start the service.  
 
+The service runs instantly while deplying this role.  
+The service is configured to start it self if it crashes.  
+The service is also configured to run as a daemon.  
+Console output is written to /var/log/upstart/counting-panda.log.  
+
 ####static-panda role
 Static-panda role made up of 2 main directories - files and tasks.  
 'Files' directory contain package.json, config.json,static-panda.js and recources directory.  
@@ -49,3 +54,9 @@ Similar to counting-panda service, there is one task file, named main.yml, and i
 First, it copies the configuration files to the working directory - /opt/bigpanda/static-panda.   
 Then, it set npm install path to the working directory for the ability of importing HttpDispatcher module.  
 At the end, it copies the services files to /etc/init and /etc/init.d and start the service.  
+
+The service runs instantly while deplying this role.  
+The service is configured to start it self if it crashes.  
+The service is also configured to run as a daemon.  
+Console output is written to /var/log/upstart/counting-panda.log.  
+
