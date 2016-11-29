@@ -3,7 +3,7 @@
 //Variable initialization
 var http = require('http');
 var workdir = '/opt/bigpanda/counting-panda/';
-var config = require(workdir + 'counting-panda-config.json');
+var config = require(workdir + 'config.json');
 var fs = require('fs');
 var HttpDispatcher = require('httpdispatcher');
 var dispatcher = new HttpDispatcher();
