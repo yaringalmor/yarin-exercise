@@ -49,7 +49,8 @@ Static-panda role made up of 2 main directories - files and tasks.
 'Files' directory contain package.json, config.json,static-panda.js and recources directory.  
 * package.json has the metadata of this role.(HttpDispartcher is mentioned as a dependency)  
 * config.json mention the port for serving the site.
-* Resources directory contain 2 images of panda - small.png & medium.png .
+* Resources directory contain 2 images of panda - small.png & medium.png .   
+
 Similar to counting-panda service, there is one task file, named main.yml, and in contains the followed instructions:     
 First, it copies the configuration files to the working directory - /opt/bigpanda/static-panda.   
 Then, it set npm install path to the working directory for the ability of importing HttpDispatcher module.  
