@@ -1,13 +1,16 @@
+#!/usr/bin/env nodejs
+
 //Variable initialization
 var http = require('http');
-var config = require('./config.json');
+var workdir = '/opt/bigpanda/static-panda/'; 
+var config = require(workdir + 'config.json');
 var fs = require('fs');
 var HttpDispatcher = require('httpdispatcher');
 var dispatcher = new HttpDispatcher();
 
-//Serving static files from 'resources' directory
+//Setting http server for serving static files from 'resources' directory
 dispatcher.setStatic('/resources');
-dispatcher.setStaticDirname('resources');
+dispatcher.setStaticDirname(workdir + 'resources');
 
 function handleRequest(request, response){
     try {

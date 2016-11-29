@@ -1,6 +1,9 @@
+#!/usr/bin/env nodejs
+
 //Variable initialization
 var http = require('http');
-var config = require('./config.json');
+var workdir = '/opt/bigpanda/counting-panda/';
+var config = require(workdir + 'config.json');
 var fs = require('fs');
 var HttpDispatcher = require('httpdispatcher');
 var dispatcher = new HttpDispatcher();

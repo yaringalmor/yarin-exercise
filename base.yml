@@ -1,5 +1,5 @@
 ---
-- name: Panda service
+- name: Panda services
   hosts: all
   become: yes
   roles:

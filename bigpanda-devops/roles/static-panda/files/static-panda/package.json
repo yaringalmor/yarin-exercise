@@ -1,9 +1,0 @@
-{
-  "name": "static-panda",
-  "version": "1.0.1",
-  "description": "I love Panda!",
-  "main": "static-panda.js",
-  "dependencies": {
-    "httpdispatcher": "^1.0.0"
-  }
-}
