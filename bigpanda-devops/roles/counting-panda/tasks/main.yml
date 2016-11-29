@@ -1,0 +1,10 @@
+---
+- name: copy GET request counter
+  copy: src=counting-panda/ dest=/opt/bigpanda/ owner=root group=root mode=0755
+
+- name: npm install
+  npm: path=/opt/bigpanda/counting-panda
+
+- name: setting counting-panda service
+  copy: src=etc/init/ dest=/etc/init/ owner=root group=root mode=0644
+  copy: src=etc/init.d/ dest=/etc/init.d/ owner=root group=root mode=0775

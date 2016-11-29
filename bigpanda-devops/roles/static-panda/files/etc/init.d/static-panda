@@ -1,0 +1,47 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          static-panda.js
+# Required-Start:    $syslog $time $remote_fs
+# Required-Stop:     $syslog $time $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Description: Http server for serving static files.
+#
+### END INIT INFO
+#
+# Author:	Yarin Galmor <yarin.galmor@gmail.com>
+#
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:/opt/bigpanda/static-panda
+DAEMON=/opt/bigpanda/static-panda/static-panda.js
+PIDFILE=/var/run/static-panda.pid
+
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+	log_daemon_msg "Starting http server" "static-panda"
+	start_daemon -p $PIDFILE $DAEMON
+	log_end_msg $?
+    ;;
+  stop)
+	log_daemon_msg "Stopping http server" "static-panda"
+	killproc -p $PIDFILE $DAEMON
+	log_end_msg $?
+    ;;
+  force-reload|restart)
+    $0 stop
+    $0 start
+    ;;
+  status)
+    status_of_proc -p $PIDFILE $DAEMON static-panda && exit 0 || exit $?
+    ;;
+  *)
+    echo "Usage: /etc/init.d/static-panda {start|stop|restart|force-reload|status}"
+    exit 1
+    ;;
+esac
+
+exit 0

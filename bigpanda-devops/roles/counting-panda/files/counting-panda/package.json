@@ -1,0 +1,9 @@
+{
+  "name": "counting-panda",
+  "version": "1.0.0",
+  "description": "I love Counting!",
+  "main": "counting-panda.js",
+  "dependencies": {
+    "httpdispatcher": "^1.0.0"
+  }
+}

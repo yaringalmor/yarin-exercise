@@ -1,0 +1,15 @@
+---
+- name: Common tasks FTW
+  hosts: all
+  become: yes
+  pre_tasks:
+    - name: Set hostname
+      hostname: name={{inventory_hostname}}
+
+- name: Panda services
+  hosts: base
+  become: yes
+  roles:
+    - { role: nodejs, tags: nodejs }
+    - { role: static-panda, tags: static-panda }
+    - { role: counting-panda, tags: counting-panda }
