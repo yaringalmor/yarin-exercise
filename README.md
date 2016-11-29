@@ -1,7 +1,7 @@
 # Yarin Galmor - DevOps Exercise
 #### INTRO
-In this exercise i had the chance to learn Ansible,Vagrant and NodeJS.  
-In this version, i made two service - static-panda.js and counting-panda.js.  
+In this exercise I had the chance to learn Ansible,Vagrant and NodeJS.  
+In this version, I made two http services - static-panda.js and counting-panda.js.  
 Besides of those services, there is an Ansible playbook named base.yml, which contain 3 roles - nodejs, static-panda and counting-panda role.
 
 ## Services
@@ -12,10 +12,10 @@ For an example, there are 2 images of panda (small.png,medium.png), and they're 
 If the file is not specified in 'resources' directory, the response will be '404'.  
 
 ####counting-panda.js
-counting-panda.js define a simple class named CountingPanda.  
-CountingPanda object contain one property (counter) and one method (countGetRequests).  
-'counter' property counts the number of GET requests served by a site (initialized with 0).  
-'countGetRequest' method get the site's requests, checks if it 'GET'. If it is so, the counter raises by 1, and the method returns the new current value.
+counting-panda.js uses HttpDispatcher module for displaying real time counter  
+of GET requests for this site.
+'counter' variable counts the number of GET requests served by a site (initialized with 0).  
+There is also 'title' variable for showing nicer display to the user.  
 
 ## Ansible Playbook
 ####base.yml
@@ -26,7 +26,18 @@ The playbook contain 3 roles which will be deploy among all hosts, and can be ap
 Nodejs role is responsible for installing nodejs and npm which are required for running static-panda.js properly.
 
 ####counting-panda role
-Counting-panda role copy counting-panda.js service to the working directory - /tmp/panda-site. 
+Counting-panda role managing all the settings that should be set for   
+letting the service work.   
+The site is served by port 8081 (configured at config.json), and could be access by the URL: <server>:8081/ .  
+Counting-panda role made up of 2 main directories - files and tasks.  
+'Files' directory contain package.json, config.json and counting-panda.js.    
+* package.json has the metadata of this role.(HttpDispartcher is mentioned as a dependency)  
+* config.json mention the port for serving the site.
+
+There is one task file, named main.yml, and in contains the followed instructions:     
+First, it copies the configuration files to the working directory - /opt/bigpanda/counting-panda.   
+Then, it set npm install path to the working directory for the ability of importing HttpDispatcher module.  
+At the end, it copies the services files to /etc/init and /etc/init.d and start the service.  
 
 ####static-panda role
 Static-panda role made up of 2 main directories - files and tasks.  
@@ -34,4 +45,7 @@ Static-panda role made up of 2 main directories - files and tasks.
 * package.json has the metadata of this role.(HttpDispartcher is mentioned as a dependency)  
 * config.json mention the port for serving the site.
 * Resources directory contain 2 images of panda - small.png & medium.png .
-* The main.yml file (in tasks directory) instruct ansible to first copy the files from 'files' directory (to the path /tmp/panda-site on the host) and afterwards define /tmp/panda-site directory as a path for installing npm packages (needed for installing HttpDispatcher package).  
+Similar to counting-panda service, there is one task file, named main.yml, and in contains the followed instructions:     
+First, it copies the configuration files to the working directory - /opt/bigpanda/static-panda.   
+Then, it set npm install path to the working directory for the ability of importing HttpDispatcher module.  
+At the end, it copies the services files to /etc/init and /etc/init.d and start the service.  
