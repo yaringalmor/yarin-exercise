@@ -1,8 +1,11 @@
 ---
 - name: Panda services
-  hosts: all
+  hosts: base
   become: yes
+  vars:
+    enable_static_panda: "{{deploy_service == 'static-panda' or deploy_service == 'both'}}"
+    enable_counting_panda: "{{deploy_service == 'counting-panda' or deploy_service == 'both'}}"
   roles:
     - { role: nodejs, tags: nodejs }
-    - { role: static-panda, tags: static-panda }
-    - { role: counting-panda, tags: counting-panda }
+    - { role: static-panda, tags: static-panda, when: enable_static_panda|bool }
+    - { role: counting-panda, tags: counting-panda, when: enable_counting_panda |bool }
